@@ -19,6 +19,7 @@
     "mesonpy",
     "maturin"
   ],
+  "ci_frontend": ["tox", "nox"],
   "vcs": true,
   "__year": "{% now 'utc', '%Y' %}",
   "__project_slug": "{{ cookiecutter.project_name | lower | replace('-', '_') | replace('.', '_') }}",
@@ -33,6 +34,11 @@
     "email": "Your email",
     "project_short_description": "A short description of your project",
     "license": "Select a license",
+    "ci_frontend": {
+      "__prompt__": "The tool used to run project-specific commands in isolated environments, reproduce CI failures locally with single commands, and minimize reliance on any single CI service",
+      "tox": "Tox ---- Use an ini file for configuration",
+      "nox": "Nox ---- Use a Python file for configuration"
+    },
     "backend": {
       "__prompt__": "Choose a build backend",
       "hatch": "Hatchling                      - Pure Python (recommended)",

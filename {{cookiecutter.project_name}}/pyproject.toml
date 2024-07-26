@@ -70,7 +70,11 @@ ignore = [
   ".pre-commit-config.yaml",
   ".readthedocs.yaml",
   "src/*/_version.py",
+{%- if cookiecutter.ci_frontend == "nox" %}
   "noxfile.py",
+{%- elif cookiecutter.ci_frontend == "tox" %}
+  "tox.ini",
+{%- endif %}
 ]
 
 {%- elif cookiecutter.backend == "poetry" %}
@@ -379,7 +383,9 @@ isort.required-imports = ["from __future__ import annotations"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["T20"]
+{%- if cookiecutter.ci_frontend == "nox" %}
 "noxfile.py" = ["T20"]
+{%- endif %}
 
 
 [tool.pylint]

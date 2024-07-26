@@ -1,0 +1,58 @@
+[tox]
+requires = tox>=4.2
+env_list = lint, pylint, test, docs, build_api_docs, build
+
+[testenv]
+package = wheel
+wheel_build_env = .pkg
+
+[testenv:lint]
+description = Run the linter.
+skip_install = true
+deps = pre-commit
+commands = pre-commit run --all-files --show-diff-on-failure {posargs}
+
+[testenv:test]
+description = Run the unit and regular tests.
+extras = test
+commands = pytest {posargs}
+
+[testenv:docs]
+description = Build the docs. Pass --non-interactive to avoid serving.
+extras = docs
+deps = sphinx-autobuild
+commands =
+    sphinx-build -n -T -b={posargs:html} docs {posargs:docs/_build/html}
+
+[testenv:docs-serve]
+description = Build and serve the docs.
+extras = docs
+deps = sphinx-autobuild
+commands =
+    sphinx-autobuild --open-browser -n -T -b=html docs docs/_build/html
+
+[testenv:build_api_docs]
+description = Build (regenerate) API docs.
+extras = docs
+deps = sphinx
+commands =
+    sphinx-apidoc -o docs/api/ --module-first --no-toc --force "src/{{ cookiecutter.__project_slug }}"
+
+[testenv:build]
+description = Build an SDist and wheel.
+skip_install = true
+deps = build
+commands = python -m build
+
+[testenv:clean]
+description = Clean the build directory.
+skip_install = true
+commands = python -c "import shutil; shutil.rmtree('build', ignore_errors=True)"
+
+[testenv:gen-lockfile]
+description = generate a lock file for constrained installs
+skip_install = true
+deps =
+    uv==0.2.29
+commands =
+    uv pip compile -o requirements.lock pyproject.toml {posargs:--no-annotate}
