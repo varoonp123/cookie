@@ -1,6 +1,9 @@
-# Scientific Python: guide, cookie, & sp-repo-review
+# Varun's Python Project Cookiecutter Template
 
-## Cookie
+> ⚠️ This is my personal fork of
+> [scientific-python/cookie](https://github.com/scientific-python/cookie) meant
+> to meet my needs and sensibilities. Some features of upstream may be dropped
+> if I don't use them.
 
 [![Actions Status][actions-badge]][actions-link]
 [![GitHub Discussion][github-discussions-badge]][github-discussions-link]
