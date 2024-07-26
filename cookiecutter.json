@@ -21,6 +21,7 @@
   ],
   "ci_frontend": ["tox", "nox"],
   "vcs": true,
+  "docs_host": ["readthedocs", "none"],
   "__year": "{% now 'utc', '%Y' %}",
   "__project_slug": "{{ cookiecutter.project_name | lower | replace('-', '_') | replace('.', '_') }}",
   "__type": "{{ 'compiled' if cookiecutter.backend in ['pybind11', 'skbuild', 'mesonpy', 'maturin'] else 'pure' }}",
@@ -31,6 +32,10 @@
     "org": "The name of your (GitHub?) org",
     "url": "The url to your GitHub or GitLab repository",
     "full_name": "Your name",
+    "docs_host": {
+      "__prompt__": "Which config file to include for documentation hosts to build our docs",
+      "readthedocs": "If provided, we include a .readthedocs.yaml base configuration"
+    },
     "email": "Your email",
     "project_short_description": "A short description of your project",
     "license": "Select a license",
