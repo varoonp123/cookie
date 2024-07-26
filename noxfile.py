@@ -25,7 +25,7 @@ from typing import Any
 import nox
 
 nox.needs_version = ">=2024.3.2"
-nox.options.sessions = ["rr_lint", "rr_tests", "rr_pylint", "readme"]
+nox.options.sessions = ["rr_lint", "rr_tests", "readme"]
 nox.options.default_venv_backend = "uv|virtualenv"
 
 DIR = Path(__file__).parent.resolve()
@@ -496,17 +496,6 @@ def rr_lint(session: nox.Session) -> None:
     """
     session.install("pre-commit")
     session.run("pre-commit", "run", "--all-files", *session.posargs)
-
-
-@nox.session
-def rr_pylint(session: nox.Session) -> None:
-    """
-    Run PyLint.
-    """
-    # This needs to be installed into the package environment, and is slower
-    # than a pre-commit check
-    session.install("-e.[cli]", "pylint")
-    session.run("pylint", "src", *session.posargs)
 
 
 @nox.session
