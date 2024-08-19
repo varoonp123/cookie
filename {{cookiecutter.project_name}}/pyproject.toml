@@ -200,12 +200,15 @@ dependencies = []
 
 [project.optional-dependencies]
 test = [
-  "pytest >=6",
-  "pytest-cov >=3",
+  "pytest>=6",
+  "pytest-cov>=3",
+]
+typecheck = [
+  "mypy>=1.10",
 ]
 dev = [
-  "pytest >=6",
-  "pytest-cov >=3",
+  "pytest>=6",
+  "pytest-cov>=3",
 ]
 docs = [
   "sphinx>=7.0",

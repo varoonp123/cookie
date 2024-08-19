@@ -1,16 +1,21 @@
 [tox]
 requires = tox>=4.2
-env_list = lint, pylint, test, docs, build_api_docs, build
+env_list = fix, typecheck, test, docs, build_api_docs, build
 
 [testenv]
 package = wheel
 wheel_build_env = .pkg
 
-[testenv:lint]
-description = Run the linter.
+[testenv:fix]
+description = Run the linters.
 skip_install = true
 deps = pre-commit
 commands = pre-commit run --all-files --show-diff-on-failure {posargs}
+
+[testenv:type]
+description = Run the type checker.
+extras = test, typecheck
+commands = mypy src/ tests/
 
 [testenv:test]
 description = Run the unit and regular tests.
