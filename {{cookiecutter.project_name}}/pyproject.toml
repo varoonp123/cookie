@@ -387,21 +387,3 @@ isort.required-imports = ["from __future__ import annotations"]
 {%- if cookiecutter.ci_frontend == "nox" %}
 "noxfile.py" = ["T20"]
 {%- endif %}
-
-
-[tool.pylint]
-py-version = "3.8"
-ignore-paths = [".*/_version.py"]
-{%- if cookiecutter.__type == "compiled" %}
-extension-pkg-allow-list = ["{{ cookiecutter.__project_slug }}._core"]
-{%- endif %}
-reports.output-format = "colorized"
-similarities.ignore-imports = "yes"
-messages_control.disable = [
-  "design",
-  "fixme",
-  "line-too-long",
-  "missing-module-docstring",
-  "missing-function-docstring",
-  "wrong-import-position",
-]
